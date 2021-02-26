@@ -1,0 +1,29 @@
+{
+  "name": "app01-intro",
+  "version": "1.0.0",
+  "description": "Aplicacion de escritorio multiplataforma en Electron",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jimmyespino5/Electron.git"
+  },
+  "keywords": [
+    "Electron",
+    "Escritorio",
+    "Multiplataforma",
+    "Node.js",
+    "Chromium"
+  ],
+  "author": "Jimmy Espino",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jimmyespino5/Electron/issues"
+  },
+  "homepage": "https://github.com/jimmyespino5/Electron#readme",
+  "devDependencies": {
+    "electron": "^11.3.0"
+  }
+}
