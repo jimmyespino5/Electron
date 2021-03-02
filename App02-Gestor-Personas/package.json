@@ -1,0 +1,32 @@
+{
+  "name": "app02-gestor-personas",
+  "version": "1.0.0",
+  "description": "Gestor de personas ",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jimmyespino5/Electron.git"
+  },
+  "keywords": [
+    "electron",
+    "aplicacion",
+    "escritorio",
+    "desktop",
+    "multiplataforma"
+  ],
+  "author": "Jimmy Espino",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jimmyespino5/Electron/issues"
+  },
+  "homepage": "https://github.com/jimmyespino5/Electron#readme",
+  "devDependencies": {
+    "electron": "^12.0.0"
+  },
+  "dependencies": {
+    "nedb": "^1.8.0"
+  }
+}
