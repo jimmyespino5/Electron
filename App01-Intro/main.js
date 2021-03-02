@@ -16,7 +16,7 @@ function crearVentanaPrincipal(){
 app.whenReady().then(crearVentanaPrincipal);
 
 app.on('window-all-closed', function(){ //Para MacOs
-    if(process.platform === 'darwin'){
+    if(process.platform !== 'darwin'){
         app.quit();
     }
 });

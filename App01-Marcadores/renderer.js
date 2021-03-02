@@ -63,7 +63,7 @@ class Marcadores{
     }
 
     generarHtmlMarcador(marcador){
-        return `<div class="enlace"> <h3>${marcador.titulo}</h3><p><a href="${marcador.url}">${marcador.url}</a></p></div>`;
+        return `<li class="list-group-item"> <h4> ${marcador.titulo}  </h4> <a href="${marcador.url}">${marcador.url}</a></li>`;
     }
 
     visualizarMarcadores(){
@@ -71,15 +71,18 @@ class Marcadores{
 
         let html = marcadores.map(this.generarHtmlMarcador).join('');
 
-        this.marcadores.innerHTML = html;
+        this.marcadores.innerHTML = `<ul class="list-group">${html}</ul>`;
     }
 
     reportarError(error, url){
+        this.mensajeError.classList.remove('invisible');
         this.mensajeError.innerHTML=`Ocurrio un error al intentar acceder a ${url} : ${error}`;
 
         setTimeout(()=>{
             this.mensajeError.innerHTML = null;
+            this.mensajeError.classList.add('invisible');
         }, 5000);
+
     }
 
     eliminarMarcadoresCreados(){

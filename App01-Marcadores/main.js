@@ -13,3 +13,15 @@ function crearVentanaPrincipal(){
 }
 
 app.whenReady().then(crearVentanaPrincipal);
+
+app.on('window-all-closed', function(){ //Para MacOs
+    if(process.platform !== 'darwin'){
+        app.quit();
+    }
+});
+
+app.on('activate', function(){
+    if(BrowserWindow.getAllWindows().length===0){ //Para MacOs
+        crearVentanaPrincipal();
+    }
+});
