@@ -11,6 +11,13 @@ let menuAplicacionPlantilla =[
                 click: () => {
                     abrirVentanaAcercaDe();
                 }
+            },
+            {
+                label :"Toggle Dev Tools",
+                accelerator: "F12",
+                click: () => {
+                    ventanaPrincipal.webContents.toggleDevTools();
+                }
             }
         ]
     }
@@ -20,8 +27,8 @@ function crearVentanaPrincipal(){
     ventanaPrincipal = new BrowserWindow({
         width: 800,
         height: 700,
-        webPreferences:{
-            nodeIntegration:true
+        webPreferences: {
+            nodeIntegration: true
         }
     });
 
@@ -30,11 +37,9 @@ function crearVentanaPrincipal(){
     let menu = Menu.buildFromTemplate(menuAplicacionPlantilla);
     ventanaPrincipal.setMenu(menu);
 
-    ventanaPrincipal.on('closed',()=> {
+    ventanaPrincipal.on('closed',() => {
         ventanaPrincipal= null;
     });
-
-
 }
 
 function abrirVentanaAcercaDe(){
