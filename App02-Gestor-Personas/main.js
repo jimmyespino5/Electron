@@ -2,21 +2,14 @@ const {app, BrowserWindow, Menu} = require('electron');
 
 let ventanaPrincipal;
 
-let menuAplicacionPlantilla =[
+let menuAplicacionPlantilla = [
     {
-        label: 'Aplicacion',
-        submenu:[
+        label: 'Aplicación',
+        submenu: [
             {
                 label: 'Acerca de',
                 click: () => {
                     abrirVentanaAcercaDe();
-                }
-            },
-            {
-                label :"Toggle Dev Tools",
-                accelerator: "F12",
-                click: () => {
-                    ventanaPrincipal.webContents.toggleDevTools();
                 }
             }
         ]
@@ -37,14 +30,37 @@ function crearVentanaPrincipal(){
     let menu = Menu.buildFromTemplate(menuAplicacionPlantilla);
     ventanaPrincipal.setMenu(menu);
 
-    ventanaPrincipal.on('closed',() => {
-        ventanaPrincipal= null;
+    ventanaPrincipal.on('closed', () => {
+        ventanaPrincipal = null;
     });
 }
 
-function abrirVentanaAcercaDe(){
+function abrirVentanaAcercaDe() {
+    let ventanaAcercaDe = new BrowserWindow({
+        parent: ventanaPrincipal,
+        modal: true,
+        show: false,
+        width: 400,
+        height: 250
+    });
 
+    ventanaAcercaDe.loadFile('acerca-de.html');
+    ventanaAcercaDe.setMenu(null);
+    ventanaAcercaDe.once('ready-to-show', () => {
+        ventanaAcercaDe.show();
+    });
 }
 
-
 app.whenReady().then(crearVentanaPrincipal);
+
+app.on('window-all-closed', () => {
+    if (process.platform !== 'darwin'){
+        app.quit();
+    }
+});
+
+app.on('activate', () => {
+    if (ventanaPrincipal === null){
+        crearVentanaPrincipal();
+    }
+});

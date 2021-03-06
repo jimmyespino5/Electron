@@ -1,7 +1,7 @@
-const baseDatos = require('./base-datos')
+const baseDatos = require('./js/base-datos');
 
-class GestorPersonas{
-    constructor(){
+class GestorPersonas {
+    constructor() {
         this.frmNuevoRegistro = document.getElementById('frmNuevoRegistro');
         this.registros = document.getElementById('registros');
         this.nombres = document.getElementById('nombres');
@@ -13,20 +13,11 @@ class GestorPersonas{
         this.agregarEventListeners();
     }
 
-    agregarEventListeners(){
+    agregarEventListeners() {
         this.frmNuevoRegistro.addEventListener('submit', this.crearRegistroPersona.bind(this));
-        this.nombres.addEventListener('keyup', this.habilitarBotonCrearRegistro.bind(this));
-        this.apellidos.addEventListener('keyup', this.habilitarBotonCrearRegistro.bind(this));
-        this.correo.addEventListener('keyup', this.habilitarBotonCrearRegistro.bind(this));
     }
 
-    habilitarBotonCrearRegistro(){
-        if(this.nombres.value && this.apellidos.value && this.correo.validity.valid){
-            this.btnCrearRegistro.disabled = false;
-        }
-    }
-
-    crearRegistroPersona(evento){
+    crearRegistroPersona(evento) {
         evento.preventDefault();
 
         baseDatos.agregarPersona(this.nombres.value, this.apellidos.value, this.correo.value);
@@ -39,16 +30,15 @@ class GestorPersonas{
     }
 
     generarHtmlRegistroPersona(persona){
-        return `<tr> 
-                <td>${persona.nombres}</td>
-                <td>${persona.apellidos}</td>
-                <td>${persona.nombres}</td>
-                <td> <input type="button" class="btn btn-danger" onClick="${this.eliminarRegistroPersona(persona._id)}">
-                </td>            
-                </tr>`;
+        return `<tr>
+            <td>${persona.nombres}</td>
+            <td>${persona.apellidos}</td>
+            <td>${persona.correo}</td>
+            <td><input type="button" class="btn btn-danger btn-sm" onclick="gestorPersonas.eliminarRegistroPersona('${persona._id}');" value="Eliminar"></td>
+        </tr>`;
     }
 
-    cargarRegistrosPersona(){
+    cargarRegistrosPersona() {
         baseDatos.obtenerPersonas((personas) => {
             let html = personas.map(this.generarHtmlRegistroPersona).join('');
 
@@ -56,11 +46,11 @@ class GestorPersonas{
         });
     }
 
-    eliminarRegistroPersona(id){
+    eliminarRegistroPersona(id) {
         baseDatos.eliminarPersona(id);
 
         this.cargarRegistrosPersona();
     }
 }
 
-new GestorPersonas();
+let gestorPersonas = new GestorPersonas();
