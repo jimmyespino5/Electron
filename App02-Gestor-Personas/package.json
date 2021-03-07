@@ -24,7 +24,9 @@
   },
   "homepage": "https://github.com/Fhernd/Electron-Curso#readme",
   "devDependencies": {
-    "electron": "">=9.4.0""
+
+    "electron": "^9.4.0"
+
   },
   "dependencies": {
     "nedb": "^1.8.0"
